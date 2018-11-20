@@ -9,7 +9,8 @@ ENV MARATHON_VERSION 1.6.322
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends software-properties-common  add-apt-repository ppa:openjdk-r/ppa -y \
+    && apt-get install -y --no-install-recommends software-properties-common \
+    && add-apt-repository ppa:openjdk-r/ppa -y \
     && apt-get update \
     && apt-get install -y --no-install-recommends openjdk-8-jre-headless \
     && apt-get clean \
