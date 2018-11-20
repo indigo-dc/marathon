@@ -23,7 +23,7 @@ RUN /var/lib/dpkg/info/ca-certificates-java.postinst configure
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF \
     && echo deb http://repos.mesosphere.io/ubuntu trusty main > /etc/apt/sources.list.d/mesosphere.list \
     && apt-get update \
-    && apt-get install --no-install-recommends -y --force-yes mesos \
+    && apt-get install --no-install-recommends -y --force-yes mesos wget \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && cd /usr/share \
