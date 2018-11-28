@@ -25,15 +25,20 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF \
     && apt-get install --no-install-recommends -y --force-yes mesos wget \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && cd /usr/share \
+    && cd /usr \
+    && mkdir opt \
+    && cd opt \
     && mkdir marathon \
     && cd marathon \
     && wget https://downloads.mesosphere.com/marathon/releases/1.6.322/marathon-1.6.322-2bf46b341.tgz -O marathon.tar.gz \
     && tar -xzvf marathon.tar.gz --strip 1 \
-    && ln -s /usr/share/marathon/bin/* /usr/bin/ \
+    && ln -s /usr/opt/marathon/bin/* /usr/bin/ \
     && rm marathon.tar.gz
 
-ENV MARATHON_HOME /usr/share/marathon
+ENV MARATHON_HOME /usr/opt/marathon
+
+COPY marathon.conf /usr/opt/marathon/
+COPY marathon /usr/init.d/
 
 CMD ["marathon", "--no-logger"]
 
