@@ -3,7 +3,6 @@ FROM ubuntu:14.04
 RUN locale-gen en_US.UTF-8
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV MARATHON_VERSION 1.6.322
 
 # set default java environment variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
@@ -29,9 +28,12 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF \
     && cd /usr/share \
     && mkdir marathon \
     && cd marathon \
-    && wget https://github.com/mesosphere/marathon/archive/v${MARATHON_VERSION}.tar.gz -O marathon.tar.gz \
+    && wget https://downloads.mesosphere.com/marathon/releases/1.6.322/marathon-1.6.322-2bf46b341.tgz -O marathon.tar.gz \
     && tar -xzvf marathon.tar.gz --strip 1 \
-    && ln -s /usr/share/marathon/bin/* /usr/bin/
+    && ln -s /usr/share/marathon/bin/* /usr/bin/ \
+    && rm marathon.tar.gz
+
+ENV MARATHON_HOME /usr/share/marathon
 
 CMD ["marathon", "--no-logger"]
 
