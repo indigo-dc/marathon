@@ -35,9 +35,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF \
     && ln -s /usr/opt/marathon/bin/* /usr/bin/ \
     && rm marathon.tar.gz
 
-ENV MARATHON_HOME /usr/opt/marathon
-
-COPY marathon.conf /usr/opt/marathon/
+COPY marathon.conf /etc/init/
 COPY marathon /usr/init.d/
 
 CMD ["marathon", "--no-logger"]
