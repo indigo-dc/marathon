@@ -38,7 +38,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF \
 COPY marathon.conf /etc/init/
 COPY marathon /usr/init.d/
 
-CMD ["marathon", "--no-logger"]
+CMD ["marathon"]
 
 COPY entrypoint.sh /
 
