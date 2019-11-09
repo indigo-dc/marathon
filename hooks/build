@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Building image with marathon package version $marathon_version"
+docker build --build-arg mesos_version=$mesos_version --build-arg marathon_version=$marathon_version -t $IMAGE_NAME .
